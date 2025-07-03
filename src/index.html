@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<title>Weather App</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="./bg/favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Libertinus+Mono&display=swap');
+
+        .libertinus-mono-regular {
+            font-family: "Libertinus Mono", monospace;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        body {
+            background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+        }
+
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: bold;
+            width: auto;
+            min-width: 300px;
+            animation: scaleIn 0.5s ease forwards;
+            transform: scale(0.9);
+        }
+
+        @keyframes scaleIn {
+            to {
+                transform: scale(1);
+            }
+        }
+
+        input {
+            padding: 8px 12px;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: #2563eb; /* blue-600 */
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #2563eb; /* blue-600 */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #1d4ed8; /* blue-700 */
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="libertinus-mono-regular">
+    <div class="font-bold text-white text-xl flex justify-center flex-wrap mt-4">
+        <p class="text-center text-black">Get Real-Time Weather Updates Instantly</p>
+    </div>
+
+    <div class="box flex justify-center items-center min-h-screen">
+        <div class="glassmorphism gap-[20px]">
+            <div class="heading my-0.5">
+                <p class="whitespace-nowrap text-black font-extrabold">Your Local Forecast at a Glance</p>
+            </div>
+            <div class="weather_info flex gap-4">
+                <div class="input">
+                    <input type="text" class="border-2 in" placeholder="Enter city name">
+                </div>
+                <div class="check">
+                    <button onclick="getting()">Submit</button>
+                </div>
+            </div>
+            <div class="weather">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+
+</html>
+
