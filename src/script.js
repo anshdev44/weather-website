@@ -53,6 +53,11 @@ function convertUnixToTime(timestamp) {
     return `${hours}:${minutes} ${ampm}`;
 }
 
+function m_to_km(distance){
+    return distance/1000;
+};
+
+
 
 async function getweather(city) {
     try {
@@ -74,76 +79,76 @@ async function getweather(city) {
         let div = document.querySelector('.ma');
 
         // Render the weather info
+        // Fetch the weather icon URL asynchronously
+        const iconUrl = `https://openweathermap.org/img/wn/${a.weather[0].icon}@2x.png`;
+
         div.innerHTML = `
             <div class="upper flex-col gap-[20px]">
-                <div class="smth_4 flex justify-between items-center gap-4">
-                    <div>
-                        <div class="heading flex justify-evenly gap-4">
-                            <p>${a.name}</p>
-                            <p>${a.sys.country}</p>
-                        </div>
-                        <div class="desc">
-                            <p>${a.weather[0].description}</p>
-                        </div>
-                        <div class="main_temp flex items-start gap-1">
-                            <p>${a.main.temp}</p>
-                            <p>&#8451;</p>
-                        </div>
-                        <div class="fell_like_temp">
-                            <p>Feels like: ${a.main.feels_like} &#8451;</p>
-                        </div>
-                    </div>
-
-                    <div class="weather_icon flex">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="white">
-                            <path d="M48.7,24.1C47.1,16.7,40.1,11,32,11c-7.1,0-13.1,4.5-15.3,10.8C10.3,23,6,28.2,6,34.2C6,41,11.6,46.7,18.5,46.7H47
-                                c6.1,0,11-4.9,11-11C58,29.4,53.9,25,48.7,24.1z" />
-                        </svg>
-                    </div>
+            <div class="smth_4 flex justify-between items-center gap-4">
+                <div>
+                <div class="heading flex justify-evenly gap-4">
+                    <p>${a.name}</p>
+                    <p>${a.sys.country}</p>
                 </div>
+                <div class="desc">
+                    <p>${a.weather[0].description}</p>
+                </div>
+                <div class="main_temp flex items-start gap-1">
+                    <p>${a.main.temp}</p>
+                    <p>&#8451;</p>
+                </div>
+                <div class="fell_like_temp">
+                    <p>Feels like: ${a.main.feels_like} &#8451;</p>
+                </div>
+                </div>
+
+                <div class="weather_icon flex">
+                   <img src="${iconUrl}" alt="">
+                </div>
+            </div>
             </div>
 
             <div class="sepration_line border border-white my-4"></div>
 
             <div class="middle flex w-full my-2 gap-4 items-start">
-                <div class="section_1 text-white w-1/2">
-                    <p>Min Temp: ${a.main.temp_min}</p>
-                    <p>Humidity: ${a.main.humidity}%</p>
-                    <p>Visibility: ${a.visibility} m</p>
-                    <p>Sunrise: ${(a.sys.sunrise)}</p>
-                </div>
+            <div class="section_1 text-white w-1/2">
+                <p>Min Temp: ${a.main.temp_min}</p>
+                <p>Humidity: ${a.main.humidity}%</p>
+                <p>Visibility: ${m_to_km(a.visibility)}km</p>
+                <p>Sunrise: ${convertUnixToTime(a.sys.sunrise)}</p>
+            </div>
 
-                <div class="sepration_line border-l border-white"></div>
+            <div class="sepration_line border-l border-white"></div>
 
-                <div class="section_2 text-white w-1/2 text-right">
-                    <p>Max Temp: ${a.main.temp_max}</p>
-                    <p>Pressure: ${a.main.pressure} hPa</p>
-                    <p>Cloudiness: ${a.clouds.all}%</p>
-                    <p>Sunset: ${(a.sys.sunset)}</p>
-                </div>
+            <div class="section_2 text-white w-1/2 text-right">
+                <p>Max Temp: ${a.main.temp_max}</p>
+                <p>Pressure: ${a.main.pressure} hPa</p>
+                <p>Cloudiness: ${a.clouds.all}%</p>
+                <p>Sunset: ${convertUnixToTime(a.sys.sunset)}</p>
+            </div>
             </div>
 
             <div class="sepration_line border border-white my-4"></div>
 
             <div class="last flex justify-between items-start gap-4">
-                <div class="windspeed text-center flex-1">
-                    <p style="font-size: 12px;">Wind Speed</p>
-                    <p>${a.wind.speed} m/s</p>
-                </div>
+            <div class="windspeed text-center flex-1">
+                <p style="font-size: 12px;">Wind Speed</p>
+                <p style="font-size: 12px;">${a.wind.speed} m/s</p>
+            </div>
 
-                <div class="sepration_line border-l border-white"></div>
+            <div class="sepration_line border-l border-white"></div>
 
-                <div class="gusts text-center flex-1">
-                    <p>Gusts</p>
-                    <p>${a.wind.gust !== undefined ? a.wind.gust + " m/s" : "N/A"}</p>
-                </div>
+            <div class="gusts text-center flex-1">
+                <p style="font-size: 12px;">Gusts</p>
+                <p style="font-size: 12px;">${a.wind.gust !== undefined ? a.wind.gust + " m/s" : "N/A"}</p>
+            </div>
 
-                <div class="sepration_line border-l border-white"></div>
+            <div class="sepration_line border-l border-white"></div>
 
-                <div class="direction text-center flex-1">
-                    <p>Direction</p>
-                    <p>${a.wind.deg}°</p>
-                </div>
+            <div class="direction text-center flex-1">
+                <p style="font-size: 12px;">Direction</p>
+                <p style="font-size: 12px;">${a.wind.deg}°</p>
+            </div>
             </div>
         `;
 
