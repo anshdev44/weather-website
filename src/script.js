@@ -28,21 +28,20 @@ function background_changer(weather) {
     }
 }
 
-function handle_event() {
-    document.querySelector('.in').addEventListener("keydown", (e) => {
-        if (e.key === 'Enter') {
-            getting();
-            document.querySelector('.in').value = "";
-            document.querySelector('.in').blur();
-        }
-    });
+function handleKeyPress() {
+   document.querySelector('.in').addEventListener('keypress', function(event) {
+    if(event.key=='Enter') {
+        getting();
+        document.querySelector('.in').value=""; 
+        document.querySelector('.in').blur(); 
+    }
+   });
 }
 
-handle_event();
-
+handleKeyPress();
 
 async function getting() {
-    let a = document.querySelector('.in').value.trim(); // trim removes extra spaces
+    let a = document.querySelector('.in').value.trim(); 
 
     if (a === "") {
         alert("Please enter a valid city name.");
@@ -68,29 +67,20 @@ function m_to_km(distance){
     return distance/1000;
 };
 
-
-
 async function getweather(city) {
     try {
         let raw = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}&units=metric`);
-
         if (!raw.ok) {
             alert("City not found");
             document.querySelector('.in').value = "";
             return;
         }
-
         let a = await raw.json();
         console.log(a);
         console.log("Weather main:", a.weather[0].main);
-
-        // Call background changer
         background_changer(a.weather[0].main);
 
         let div = document.querySelector('.ma');
-
-        // Render the weather info
-        // Fetch the weather icon URL asynchronously
         const iconUrl = `https://openweathermap.org/img/wn/${a.weather[0].icon}@2x.png`;
 
         div.innerHTML = `
@@ -133,7 +123,7 @@ async function getweather(city) {
 
             <div class="section_2 text-white w-1/2 text-right">
                 <p>Max Temp: ${a.main.temp_max}</p>
-                <p>Pressure: ${a.main.pressure} hPa</p>
+                <p style="font-size:15px">Pressure:${a.main.pressure}hPa</p>
                 <p>Cloudiness: ${a.clouds.all}%</p>
                 <p>Sunset: ${convertUnixToTime(a.sys.sunset)}</p>
             </div>
@@ -167,6 +157,8 @@ async function getweather(city) {
         console.error("Error fetching weather:", error);
     }
 }
+
+
 
 
 
