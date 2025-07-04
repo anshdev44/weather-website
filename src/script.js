@@ -28,6 +28,17 @@ function background_changer(weather) {
     }
 }
 
+function handle_event() {
+    document.querySelector('.in').addEventListener("keydown", (e) => {
+        if (e.key === 'Enter') {
+            getting();
+            document.querySelector('.in').value = "";
+            document.querySelector('.in').blur();
+        }
+    });
+}
+
+handle_event();
 
 
 async function getting() {
