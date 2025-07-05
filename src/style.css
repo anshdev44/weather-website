@@ -1,530 +1,248 @@
-  * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 219, 226, 0.2) 0%, transparent 50%),
-                linear-gradient(135deg, #1e3c72 0%, #2a5298 25%, #667eea 50%, #764ba2 75%, #f093fb 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 20s ease infinite;
-            margin: 0;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Animated background particles */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.3), transparent),
-                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.2), transparent),
-                radial-gradient(1px 1px at 90px 40px, rgba(255,255,255,0.4), transparent),
-                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.3), transparent),
-                radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.2), transparent);
-            background-repeat: repeat;
-            background-size: 200px 150px;
-            animation: particleMove 50s linear infinite;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* Floating orbs animation */
-        body::after {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(255,255,255,0.05) 0%, transparent 20%),
-                radial-gradient(circle at 70% 80%, rgba(255,255,255,0.03) 0%, transparent 25%),
-                radial-gradient(circle at 90% 30%, rgba(255,255,255,0.04) 0%, transparent 15%);
-            animation: orbFloat 30s ease-in-out infinite;
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes particleMove {
-            0% { transform: translateX(0) translateY(0); }
-            25% { transform: translateX(-50px) translateY(-20px); }
-            50% { transform: translateX(0) translateY(-40px); }
-            75% { transform: translateX(50px) translateY(-20px); }
-            100% { transform: translateX(0) translateY(0); }
-        }
-
-        @keyframes orbFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            33% { transform: translateY(-30px) rotate(120deg); }
-            66% { transform: translateY(30px) rotate(240deg); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes slideInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            0% {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            0% {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .glassmorphism {
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 1.25rem;
-            font-weight: bold;
-            width: auto;
-            min-width: 300px;
-            animation: slideInUp 0.8s ease-out;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .glassmorphism::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
-            border-radius: 22px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .glassmorphism:hover::before {
-            opacity: 1;
-        }
-
-        .glassmorphism:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .glassmorphism_1 {
-            background: rgba(255, 255, 255, 0.12);
-            border-radius: 20px;
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-            padding: 20px;
-            color: white;
-            font-size: 1.25rem;
-            font-weight: bold;
-            width: auto;
-            animation: slideInUp 0.8s ease-out 0.3s both;
-            transition: all 0.3s ease;
-            position: relative;
-            min-height: 200px;
-        }
-
-        .glassmorphism_1::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
-            border-radius: 22px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .glassmorphism_1:hover::before {
-            opacity: 1;
-        }
-
-        .glassmorphism_1:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
-        }
-
-        input {
-            padding: 12px 16px;
-            border-radius: 12px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 1rem;
-            outline: none;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            animation: slideInLeft 0.6s ease-out 0.4s both;
-        }
-
-        input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        input:focus {
-            border-color: rgba(255, 255, 255, 0.6);
-            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
-            transform: scale(1.02);
-        }
-
-        button {
-            padding: 12px 24px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
-            color: white;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            animation: slideInRight 0.6s ease-out 0.5s both;
-            position: relative;
-            overflow: hidden;
-        }
-
-        button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
-        }
-
-        button:hover::before {
-            left: 100%;
-        }
-
-        button:hover {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        /* Utility classes with animations */
-        .flex { display: flex; }
-        .flex-col { flex-direction: column; }
-        .justify-center { justify-content: center; }
-        .justify-between { justify-content: space-between; }
-        .justify-evenly { justify-content: space-evenly; }
-        .items-center { align-items: center; }
-        .items-start { align-items: flex-start; }
-        .min-h-screen { min-height: 100vh; }
-        .gap-4 { gap: 1rem; }
-        .gap-8 { gap: 2rem; }
-        .my-0\.5 { margin-top: 0.125rem; margin-bottom: 0.125rem; }
-        .my-2 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
-        .my-4 { margin-top: 1rem; margin-bottom: 1rem; }
-        .p-4 { padding: 1rem; }
-        .w-1\/2 { width: 50%; }
-        .w-full { width: 100%; }
-        .text-center { text-align: center; }
-        .text-right { text-align: right; }
-        .text-white { color: white; }
-        .text-black { color: black; }
-        .font-extrabold { font-weight: 800; }
-        .whitespace-nowrap { white-space: nowrap; }
-        .border { border-width: 1px; }
-        .border-2 { border-width: 2px; }
-        .border-l { border-left-width: 1px; }
-        .border-white { border-color: white; }
-        .flex-1 { flex: 1; }
-
-        /* Enhanced existing styles with animations */
-        .upper {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            animation: slideInUp 0.6s ease-out 0.6s both;
-        }
-
-        .smth_4 {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 16px;
-            animation: slideInLeft 0.6s ease-out 0.7s both;
-        }
-
-        .heading {
-            display: flex;
-            align-items: baseline;
-            gap: 16px;
-            margin-bottom: 4px;
-            animation: pulse 2s ease-in-out infinite;
-        }
-
-        .heading p {
-            margin: 0;
-            background: linear-gradient(135deg, #fff 0%, #f0f9ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .heading p:first-child {
-            font-size: 32px;
-            font-weight: bold;
-        }
-
-        .heading p:last-child {
-            font-size: 18px;
-            font-weight: normal;
-        }
-
-        .desc p {
-            font-size: 14px;
-            margin: 0 0 8px 0;
-            text-transform: capitalize;
-            animation: slideInLeft 0.6s ease-out 0.8s both;
-        }
-
-        .main_temp {
-            display: flex;
-            align-items: flex-start;
-            gap: 4px;
-            margin-bottom: 4px;
-            animation: slideInRight 0.6s ease-out 0.9s both;
-        }
-
-        .main_temp p:first-child {
-            font-size: 48px;
-            font-weight: bold;
-            line-height: 1;
-            margin: 0;
-        }
-
-        .main_temp p:last-child {
-            font-size: 24px;
-            margin: 8px 0 0 0;
-        }
-
-        .fell_like_temp p {
-            font-size: 14px;
-            margin: 0;
-            animation: slideInLeft 0.6s ease-out 1s both;
-        }
-
-        .weather_icon {
-            display: flex;
-            align-items: center;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .sepration_line {
-            border-top: 1px solid rgba(255, 255, 255, 0.5);
-            margin: 16px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .sepration_line::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-            animation: lineShimmer 2s ease-in-out infinite;
-        }
-
-        @keyframes lineShimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        .middle {
-            display: flex;
-            width: 100%;
-            margin: 16px 0;
-            gap: 16px;
-            align-items: flex-start;
-            animation: slideInUp 0.6s ease-out 1.1s both;
-        }
-
-        .section_1, .section_2 {
-            width: 50%;
-            transition: transform 0.3s ease;
-        }
-
-        .section_1:hover, .section_2:hover {
-            transform: translateY(-3px);
-        }
-
-        .section_1 p, .section_2 p {
-            font-size: 14px;
-            margin: 2px 0;
-            transition: color 0.3s ease;
-        }
-
-        .section_1 p:hover, .section_2 p:hover {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .section_2 {
-            text-align: right;
-        }
-
-        .middle .sepration_line {
-            border-left: 1px solid rgba(255, 255, 255, 0.5);
-            border-top: none;
-            height: 80px;
-            margin: 0;
-        }
-
-        .middle .sepration_line::before {
-            width: 1px;
-            height: 100%;
-            background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-            animation: verticalShimmer 2s ease-in-out infinite;
-        }
-
-        @keyframes verticalShimmer {
-            0% { top: -100%; }
-            100% { top: 100%; }
-        }
-
-        .last {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 16px;
-            animation: slideInUp 0.6s ease-out 1.2s both;
-        }
-
-        .windspeed, .gusts, .direction {
-            text-align: center;
-            flex: 1;
-            transition: transform 0.3s ease;
-        }
-
-        .windspeed:hover, .gusts:hover, .direction:hover {
-            transform: scale(1.05);
-        }
-
-        .windspeed p, .gusts p, .direction p {
-            margin: 0;
-            transition: color 0.3s ease;
-        }
-
-        .windspeed p:hover, .gusts p:hover, .direction p:hover {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .windspeed p:first-child, .gusts p:first-child, .direction p:first-child {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .windspeed p:last-child, .gusts p:last-child, .direction p:last-child {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .last .sepration_line {
-            border-left: 1px solid rgba(255, 255, 255, 0.5);
-            border-top: none;
-            height: 40px;
-            margin: 0;
-        }
-
-        /* Responsive animations */
-        @media (max-width: 768px) {
-            .glassmorphism {
-                min-width: 280px;
-                margin: 0 1rem;
-            }
-            
-            .glassmorphism_1 {
-                margin: 0 1rem;
-            }
-            
-            .heading p:first-child {
-                font-size: 24px;
-            }
-            
-            .main_temp p:first-child {
-                font-size: 36px;
-            }
-        }
-
-        /* Weather info section animations */
-        .weather_info {
-            animation: slideInUp 0.6s ease-out 0.4s both;
-        }
-
-        .weather_info .input {
-            animation: slideInLeft 0.6s ease-out 0.5s both;
-        }
-
-        .weather_info .check {
-            animation: slideInRight 0.6s ease-out 0.6s both;
-        }
+     body {
+         background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+         background-size: cover;
+         background-position: center;
+         margin: 0;
+     }
+
+     .glassmorphism {
+         background: rgba(255, 255, 255, 0.1);
+         border-radius: 16px;
+         backdrop-filter: blur(10px);
+         -webkit-backdrop-filter: blur(10px);
+         border: 1px solid rgba(255, 255, 255, 0.3);
+         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+         padding: 20px;
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         color: white;
+         font-size: 1.25rem;
+         font-weight: bold;
+         width: auto;
+         min-width: 300px;
+         animation: scaleIn 0.5s ease forwards;
+         transform: scale(0.9);
+     }
+
+     .glassmorphism_1 {
+         background: rgba(255, 255, 255, 0.1);
+         border-radius: 16px;
+         backdrop-filter: blur(10px);
+         -webkit-backdrop-filter: blur(10px);
+         border: 1px solid rgba(255, 255, 255, 0.3);
+         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+         padding: 20px;
+         color: white;
+         font-size: 1.25rem;
+         font-weight: bold;
+         width: auto;
+         animation: scaleIn 0.5s ease forwards;
+         transform: scale(0.9);
+     }
+
+
+     /* Only show glassmorphism_1 when it has content */
+     .glassmorphism_1:empty {
+         display: none;
+     }
+
+     @keyframes scaleIn {
+         to {
+             transform: scale(1);
+         }
+     }
+
+     input {
+         padding: 8px 12px;
+         border-radius: 8px;
+         outline: none;
+         transition: all 0.3s ease;
+         color: white;
+         background: rgba(255, 255, 255, 0.1);
+         border: 1px solid rgba(255, 255, 255, 0.3);
+     }
+
+     input::placeholder {
+         color: rgba(255, 255, 255, 0.7);
+     }
+
+     input:focus {
+         border-color: #2563eb;
+         box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+     }
+
+     button {
+         padding: 8px 16px;
+         background-color: #2563eb;
+         color: white;
+         border: none;
+         border-radius: 8px;
+         cursor: pointer;
+         transition: background-color 0.3s ease, transform 0.2s ease;
+     }
+
+     button:hover {
+         background-color: #1d4ed8;
+         transform: scale(1.);
+     }
+
+     /* Custom styling for the weather widget */
+     .upper {
+         display: flex;
+         flex-direction: column;
+         gap: 20px;
+     }
+
+     .smth_4 {
+         display: flex;
+         justify-content: space-between;
+         align-items: flex-start;
+         gap: 16px;
+     }
+
+     .heading {
+         display: flex;
+         align-items: baseline;
+         gap: 16px;
+         margin-bottom: 4px;
+     }
+
+     .heading p {
+         margin: 0;
+     }
+
+     .heading p:first-child {
+         font-size: 32px;
+         font-weight: bold;
+     }
+
+     .heading p:last-child {
+         font-size: 18px;
+         font-weight: normal;
+     }
+
+     .desc p {
+         font-size: 14px;
+         margin: 0 0 8px 0;
+         text-transform: capitalize;
+     }
+
+     .main_temp {
+         display: flex;
+         align-items: flex-start;
+         gap: 4px;
+         margin-bottom: 4px;
+     }
+
+     .main_temp p:first-child {
+         font-size: 48px;
+         font-weight: bold;
+         line-height: 1;
+         margin: 0;
+     }
+
+     .main_temp p:last-child {
+         font-size: 24px;
+         margin: 8px 0 0 0;
+     }
+
+     .fell_like_temp p {
+         font-size: 14px;
+         margin: 0;
+     }
+
+     .weather_icon {
+         display: flex;
+         align-items: center;
+     }
+
+     .sepration_line {
+         border-top: 1px solid rgba(255, 255, 255, 0.5);
+         margin: 16px 0;
+     }
+
+     .middle {
+         display: flex;
+         width: 100%;
+         margin: 16px 0;
+         gap: 16px;
+         align-items: flex-start;
+     }
+
+     .section_1,
+     .section_2 {
+         width: 50%;
+     }
+
+     .section_1 p,
+     .section_2 p {
+         font-size: 14px;
+         margin: 2px 0;
+     }
+
+     .section_2 {
+         text-align: right;
+     }
+
+     .middle .sepration_line {
+         border-left: 1px solid rgba(255, 255, 255, 0.5);
+         border-top: none;
+         height: 80px;
+         margin: 0;
+     }
+
+     .last {
+         display: flex;
+         justify-content: space-between;
+         align-items: flex-start;
+         gap: 16px;
+     }
+
+     .windspeed,
+     .gusts,
+     .direction {
+         text-align: center;
+         flex: 1;
+     }
+
+     .windspeed p,
+     .gusts p,
+     .direction p {
+         margin: 0;
+     }
+
+     .windspeed p:first-child,
+     .gusts p:first-child,
+     .direction p:first-child {
+         font-size: 14px;
+         font-weight: 600;
+         margin-bottom: 4px;
+     }
+
+     .windspeed p:last-child,
+     .gusts p:last-child,
+     .direction p:last-child {
+         font-size: 18px;
+         font-weight: bold;
+     }
+
+     .last .sepration_line {
+         border-left: 1px solid rgba(255, 255, 255, 0.5);
+         border-top: none;
+         height: 40px;
+         margin: 0;
+     }
+
+     .none {
+         font-size: 24px;
+         font-family: monospace;
+         border-right: 2px solid black;
+         white-space: nowrap;
+         overflow: hidden;
+     }
+
+     .one_week{
+        overflow-x: auto;
+     }

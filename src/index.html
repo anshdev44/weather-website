@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="./bg/favicon.png">
+    <link rel="stylesheet" href="style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Libertinus+Mono&display=swap');
 
@@ -13,249 +16,7 @@
             font-style: normal;
         }
 
-        body {
-            background-image: url('https://t3.ftcdn.net/jpg/07/04/94/26/360_F_704942692_WP6DWXAmwa5FYZDPqzneZhVBbhwnSjvp.jpg');
-            background-size: cover;
-            background-position: center;
-            margin: 0;
-        }
-
-        .glassmorphism {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 1.25rem;
-            font-weight: bold;
-            width: auto;
-            min-width: 300px;
-            animation: scaleIn 0.5s ease forwards;
-            transform: scale(0.9);
-        }
-
-        .glassmorphism_1 {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            color: white;
-            font-size: 1.25rem;
-            font-weight: bold;
-            width: auto;
-            /* min-width: 300px; */
-            animation: scaleIn 0.5s ease forwards;
-            transform: scale(0.9);
-        }
-
-        @keyframes scaleIn {
-            to {
-                transform: scale(1);
-            }
-        }
-
-        input {
-            padding: 8px 12px;
-            border-radius: 8px;
-            outline: none;
-            transition: all 0.3s ease;
-        }
-
-        input:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
-        }
-
-        button {
-            padding: 8px 16px;
-            background-color: #2563eb;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        button:hover {
-            background-color: #1d4ed8;
-            transform: scale(1.05);
-        }
-
-        /* Utility classes */
-        .flex { display: flex; }
-        .flex-col { flex-direction: column; }
-        .justify-center { justify-content: center; }
-        .justify-between { justify-content: space-between; }
-        .justify-evenly { justify-content: space-evenly; }
-        .items-center { align-items: center; }
-        .items-start { align-items: flex-start; }
-        .min-h-screen { min-height: 100vh; }
-        .gap-4 { gap: 1rem; }
-        .gap-8 { gap: 2rem; }
-        .my-0\.5 { margin-top: 0.125rem; margin-bottom: 0.125rem; }
-        .my-2 { margin-top: 0.5rem; margin-bottom: 0.5rem; }
-        .my-4 { margin-top: 1rem; margin-bottom: 1rem; }
-        .p-4 { padding: 1rem; }
-        .w-1\/2 { width: 50%; }
-        .w-full { width: 100%; }
-        .text-center { text-align: center; }
-        .text-right { text-align: right; }
-        .text-white { color: white; }
-        .text-black { color: black; }
-        .font-extrabold { font-weight: 800; }
-        .whitespace-nowrap { white-space: nowrap; }
-        .border { border-width: 1px; }
-        .border-2 { border-width: 2px; }
-        .border-l { border-left-width: 1px; }
-        .border-white { border-color: white; }
-        .flex-1 { flex: 1; }
-
-        /* Custom styling for the weather widget */
-        .upper {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .smth_4 {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 16px;
-        }
-
-        .heading {
-            display: flex;
-            align-items: baseline;
-            gap: 16px;
-            margin-bottom: 4px;
-        }
-
-        .heading p {
-            margin: 0;
-        }
-
-        .heading p:first-child {
-            font-size: 32px;
-            font-weight: bold;
-        }
-
-        .heading p:last-child {
-            font-size: 18px;
-            font-weight: normal;
-        }
-
-        .desc p {
-            font-size: 14px;
-            margin: 0 0 8px 0;
-            text-transform: capitalize;
-        }
-
-        .main_temp {
-            display: flex;
-            align-items: flex-start;
-            gap: 4px;
-            margin-bottom: 4px;
-        }
-
-        .main_temp p:first-child {
-            font-size: 48px;
-            font-weight: bold;
-            line-height: 1;
-            margin: 0;
-        }
-
-        .main_temp p:last-child {
-            font-size: 24px;
-            margin: 8px 0 0 0;
-        }
-
-        .fell_like_temp p {
-            font-size: 14px;
-            margin: 0;
-        }
-
-        .weather_icon {
-            display: flex;
-            align-items: center;
-        }
-
-        .sepration_line {
-            border-top: 1px solid rgba(255, 255, 255, 0.5);
-            margin: 16px 0;
-        }
-
-        .middle {
-            display: flex;
-            width: 100%;
-            margin: 16px 0;
-            gap: 16px;
-            align-items: flex-start;
-        }
-
-        .section_1, .section_2 {
-            width: 50%;
-        }
-
-        .section_1 p, .section_2 p {
-            font-size: 14px;
-            margin: 2px 0;
-        }
-
-        .section_2 {
-            text-align: right;
-        }
-
-        .middle .sepration_line {
-            border-left: 1px solid rgba(255, 255, 255, 0.5);
-            border-top: none;
-            height: 80px;
-            margin: 0;
-        }
-
-        .last {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 16px;
-        }
-
-        .windspeed, .gusts, .direction {
-            text-align: center;
-            flex: 1;
-        }
-
-        .windspeed p, .gusts p, .direction p {
-            margin: 0;
-        }
-
-        .windspeed p:first-child, .gusts p:first-child, .direction p:first-child {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .windspeed p:last-child, .gusts p:last-child, .direction p:last-child {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .last .sepration_line {
-            border-left: 1px solid rgba(255, 255, 255, 0.5);
-            border-top: none;
-            height: 40px;
-            margin: 0;
-        }
+   
     </style>
 </head>
 
@@ -264,25 +25,61 @@
     <div class="box flex flex-col justify-center items-center min-h-screen gap-8">
 
         <!-- First Box -->
-        <div class="glassmorphism gap-[20px]">
+        <div class="glassmorphism gap-[20px] main_box">
             <div class="heading my-0.5">
                 <p class="whitespace-nowrap text-black font-extrabold">Your Local Forecast at a Glance</p>
             </div>
             <div class="weather_info flex gap-4">
-                <div class="input">
-                    <input type="text" class="border-2 in" placeholder="Enter city name">
+                <div class="input p-[2px]">
+                    <input type="text" class="border-2 in " placeholder="Enter city name">
                 </div>
                 <div class="check">
-                    <button onclick="getting()">Submit</button>
+                    <button  onclick="getting()" style="background-color:skyblue;">Submit</button>
                 </div>
             </div>
         </div>
 
         <!-- Second Box -->
-        <div class="ma glassmorphism_1 box border p-4">  
+        <div class="ma glassmorphism_1 box border p-4"> 
+            <p class="none"></p> 
+        </div>
+
+        <div class="glassmorphism_1">
+            <p>Future forecast</p>
+        </div>
+
+        <!-- Week forecast boxes with proper gap -->
+        <div class="one_week flex gap-5 max-w-[390px]">
+          <div class=" box_1 glassmorphism_1 flex flex-col justify-center items-center gap-2 p-4 cursor-pointer transform transition-transform duration-300 hover:scale-105">
+                <div class="date"><p>Sunday</p></div>
+                <div class="icon"><p>icon</p></div>
+                <div class="temp"><p>34&deg</p></div>
+                <div class="feels"><p>10&deg</p></div>
+           </div>
+          <div class=" box_2 glassmorphism_1 flex flex-col justify-center items-center gap-2 p-4 cursor-pointer transform transition-transform duration-300 hover:scale-105">
+                <div class="date"><p>Sunday</p></div>
+                <div class="icon"><p>icon</p></div>
+                <div class="temp"><p>34&deg</p></div>
+                <div class="feels"><p>10&deg</p></div>
+           </div>
+          <div class=" box_3 glassmorphism_1 flex flex-col justify-center items-center gap-2 p-4 cursor-pointer transform transition-transform duration-300 hover:scale-105">
+                <div class="date"><p>Sunday</p></div>
+                <div class="icon"><p>icon</p></div>
+                <div class="temp"><p>34&deg</p></div>
+                <div class="feels"><p>10&deg</p></div>
+           </div>
+          <div class=" box_4 glassmorphism_1 flex flex-col justify-center items-center gap-2 p-4 cursor-pointer transform transition-transform duration-300 hover:scale-105">
+                <div class="date"><p>Sunday</p></div>
+                <div class="icon"><p>icon</p></div>
+                <div class="temp"><p>34&deg</p></div>
+                <div class="feels"><p>10&deg</p></div>
+           </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
+<script>
+
+</script>
 </body>
 </html>

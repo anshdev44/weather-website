@@ -17,8 +17,21 @@ const weatherBackgrounds = {
     Clouds: "url('./bg/clouds.jpg')",
 };
 
+const text = "Smart weather updates ";
+let index = 0;
+
+function typeText() {
+    if (index < text.length) {
+        document.querySelector('.none').innerHTML += text.charAt(index);
+        index++;
+        setTimeout(typeText, 100); // 100ms delay between each character
+    }
+}
+
+typeText();
+
 function background_changer(weather) {
-    console.log(weather);
+    // console.log(weather);
     if (weatherBackgrounds[weather]) {
         document.body.style.backgroundImage = weatherBackgrounds[weather];
         document.body.style.backgroundSize = "cover";
@@ -47,6 +60,7 @@ async function getting() {
         alert("Please enter a valid city name.");
     } else {
         await getweather(a);
+        await future_weather(a)
         document.querySelector('.in').value = "";
     }
 }
@@ -76,7 +90,7 @@ async function getweather(city) {
             return;
         }
         let a = await raw.json();
-        console.log(a);
+        // console.log(a);
         console.log("Weather main:", a.weather[0].main);
         background_changer(a.weather[0].main);
 
@@ -157,6 +171,42 @@ async function getweather(city) {
         console.error("Error fetching weather:", error);
     }
 }
+
+async function future_weather(city) {
+    // http://api.openweathermap.org/data/2.5/forecast?q=London&cnt=40&units=metric&appid=YOUR_API_KEY
+    let response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&units=metric&appid=${apikey}`);
+    let data = await response.json();
+    console.log(data); 
+    display_week_data(data)
+}
+
+
+function display_week_data(data){
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+// 2025-07-05 09:00:00
+const today = new Date();
+let dayName = days[today.getDay()];
+let time='12:00:00';
+
+//date index
+let date_index;
+if(today.getDate() < 10){
+    date_index = '0' + today.getDate();
+}
+else{
+    date_index=today.getDate();
+}
+// date_index = String(Number(date_index) + 1).padStart(2, '0');
+console.log(date_index);
+
+let month_index
+
+
+}
+
+
+display_week_data();
+
 
 
 
