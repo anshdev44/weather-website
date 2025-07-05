@@ -19,59 +19,65 @@
     </style>
 </head>
 
-<body class="libertinus-mono-regular">
+<body class="libertinus-mono-regular flex justify-center">
     <!-- Main Flex Container -->
-    <div class="box flex flex-col justify-center items-center min-h-screen gap-8">
+   <div class="w-full max-w-screen-md mx-auto px-4 flex flex-col items-center">
+        <div class="bada_box">
+            <div class="box flex flex-col justify-center items-center min-h-screen gap-8">
 
-        <!-- First Box -->
-        <div class="glassmorphism gap-[20px] main_box">
-            <div class="heading my-0.5">
-                <p class="whitespace-nowrap text-black font-extrabold">Your Local Forecast at a Glance</p>
-            </div>
-            <div class="weather_info flex gap-4">
-                <div class="input p-[2px]">
-                    <input type="text" class="border-2 in " placeholder="Enter city name">
+                <!-- First Box -->
+                <!-- Responsive First Box -->
+                <div class="glassmorphism w-full max-w-xl px-4 py-6 flex flex-col items-center gap-6">
+                    <div class="text-center">
+                        <p class="text-black font-extrabold text-lg sm:text-xl md:text-2xl break-words">
+                            Your Local Forecast at a Glance
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-4 justify-center w-full">
+                        <input type="text" placeholder="Enter city name"
+                            class="w-full sm:w-[250px] px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 text-white bg-white/10 placeholder-white/70 in" />
+                        <button onclick="getting()"
+                            class="w-full sm:w-auto px-4 py-2 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-md transition">
+                            Submit
+                        </button>
+                    </div>
                 </div>
-                <div class="check">
-                    <button onclick="getting()" style="background-color:skyblue;">Submit</button>
+
+
+                <!-- Second Box -->
+                <div class="ma glassmorphism_1 box border p-4">
+                    <p class="none"></p>
                 </div>
-            </div>
-        </div>
 
-        <!-- Second Box -->
-        <div class="ma glassmorphism_1 box border p-4">
-            <p class="none"></p>
-        </div>
+                <div class="glassmorphism_1">
+                    <p>Future forecast</p>
+                </div>
 
-        <div class="glassmorphism_1">
-            <p>Future forecast</p>
-        </div>
+                <!-- Week forecast boxes with proper gap -->
+                <div class="one_week flex gap-5 ">
+                    <div
+                        class=" box_1 glassmorphism_1 flex flex-col justify-center items-center gap-2 p-4 cursor-pointer transform transition-transform duration-300 hover:scale-105">
 
-        <!-- Week forecast boxes with proper gap -->
-        <div class="one_week flex gap-5 max-w-[390px]">
-            <div
-                class=" box_1 glassmorphism_1 flex flex-col justify-center items-center gap-2 p-4 cursor-pointer transform transition-transform duration-300 hover:scale-105">
+                    </div>
+                    <div
+                        class=" box_2 glassmorphism_1 flex flex-col justify-center items-center gap-2 p-4 cursor-pointer transform transition-transform duration-300 hover:scale-105">
 
-            </div>
-            <div
-                class=" box_2 glassmorphism_1 flex flex-col justify-center items-center gap-2 p-4 cursor-pointer transform transition-transform duration-300 hover:scale-105">
+                    </div>
+                    <div
+                        class=" box_3 glassmorphism_1 flex flex-col justify-center items-center gap-2 p-4 cursor-pointer transform transition-transform duration-300 hover:scale-105">
 
-            </div>
-            <div
-                class=" box_3 glassmorphism_1 flex flex-col justify-center items-center gap-2 p-4 cursor-pointer transform transition-transform duration-300 hover:scale-105">
+                    </div>
+                    <div
+                        class=" box_4 glassmorphism_1 flex flex-col justify-center items-center gap-2 p-4 cursor-pointer transform transition-transform duration-300 hover:scale-105">
 
-            </div>
-            <div
-                class=" box_4 glassmorphism_1 flex flex-col justify-center items-center gap-2 p-4 cursor-pointer transform transition-transform duration-300 hover:scale-105">
-
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <script src="script.js"></script>
-    <script>
 
-    </script>
 </body>
 
 </html>

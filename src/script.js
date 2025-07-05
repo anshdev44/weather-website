@@ -90,7 +90,6 @@ async function getweather(city) {
             return;
         }
         let a = await raw.json();
-        // console.log(a);
         console.log("Weather main:", a.weather[0].main);
         background_changer(a.weather[0].main);
 
@@ -176,7 +175,6 @@ async function future_weather(city) {
     // http://api.openweathermap.org/data/2.5/forecast?q=London&cnt=40&units=metric&appid=YOUR_API_KEY
     let response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&units=metric&appid=${apikey}`);
     let data = await response.json();
-    console.log(data);
     fetch_week_data(data)
 }
 
@@ -185,7 +183,6 @@ function fetch_week_data(data) {
     const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const today = new Date();
     const time = '12:00:00';
-
 
     for (let i = 1; i <= 4; i++) {
         let nextDate = new Date(today);

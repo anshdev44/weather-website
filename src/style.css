@@ -255,3 +255,41 @@
          display: none;
          /* For Chrome, Safari, Opera */
      }
+
+     @media screen and (max-width: 688px) {
+        .one_week{
+            max-width: 370px;
+        }
+        .bada_box{
+           margin-left: 10px;
+           margin-right: 10px;
+           
+        }
+
+     }
+
+   
+.bada_box {
+    width: 100%;
+    max-width: 1000px;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.box {
+    width: 100%;
+    max-width: 600px;
+}
+
+.glassmorphism, .glassmorphism_1 {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 500px) {
+    .one_week {
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+    }
+}
