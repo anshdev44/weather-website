@@ -42,19 +42,19 @@ function background_changer(weather) {
 }
 
 function handleKeyPress() {
-   document.querySelector('.in').addEventListener('keypress', function(event) {
-    if(event.key=='Enter') {
-        getting();
-        document.querySelector('.in').value=""; 
-        document.querySelector('.in').blur(); 
-    }
-   });
+    document.querySelector('.in').addEventListener('keypress', function (event) {
+        if (event.key == 'Enter') {
+            getting();
+            document.querySelector('.in').value = "";
+            document.querySelector('.in').blur();
+        }
+    });
 }
 
 handleKeyPress();
 
 async function getting() {
-    let a = document.querySelector('.in').value.trim(); 
+    let a = document.querySelector('.in').value.trim();
 
     if (a === "") {
         alert("Please enter a valid city name.");
@@ -66,7 +66,7 @@ async function getting() {
 }
 
 function convertUnixToTime(timestamp) {
-   
+
     let date = new Date(timestamp * 1000);
     let hours = date.getHours();
     let minutes = date.getMinutes();
@@ -77,8 +77,8 @@ function convertUnixToTime(timestamp) {
     return `${hours}:${minutes} ${ampm}`;
 }
 
-function m_to_km(distance){
-    return distance/1000;
+function m_to_km(distance) {
+    return distance / 1000;
 };
 
 async function getweather(city) {
@@ -176,36 +176,50 @@ async function future_weather(city) {
     // http://api.openweathermap.org/data/2.5/forecast?q=London&cnt=40&units=metric&appid=YOUR_API_KEY
     let response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&units=metric&appid=${apikey}`);
     let data = await response.json();
-    console.log(data); 
-    display_week_data(data)
+    console.log(data);
+    fetch_week_data(data)
 }
 
 
-function display_week_data(data){
-const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-// 2025-07-05 09:00:00
-const today = new Date();
-let dayName = days[today.getDay()];
-let time='12:00:00';
+function fetch_week_data(data) {
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const today = new Date();
+    const time = '12:00:00';
 
-//date index
-let date_index;
-if(today.getDate() < 10){
-    date_index = '0' + today.getDate();
+
+    for (let i = 1; i <= 4; i++) {
+        let nextDate = new Date(today);
+        nextDate.setDate(today.getDate() + i);
+        let day_name = days[(today.getDay() + i) % 7];
+
+        let year = nextDate.getFullYear();
+        let month = String(nextDate.getMonth() + 1).padStart(2, '0');
+        let date = String(nextDate.getDate()).padStart(2, '0');
+
+        let target_datetime = `${year}-${month}-${date} ${time}`;
+
+
+
+        let match = data.list.find(f => f.dt_txt === target_datetime);
+        if (match) {
+            display_week_data(match, day_name, i);
+            console.log(day_name)
+        }
+    }
 }
-else{
-    date_index=today.getDate();
+
+
+function display_week_data(data, day_name, i) {
+    let div_1 = document.querySelector(`.box_${i}`);
+    div_1.innerHTML = `<div class="date"><p>${day_name}</p></div>
+                <div class="icon"><p><img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt=""></p></div>
+                <div class="temp"><p>${data.main.temp}&deg</p></div>
+                <div class="feels"><p>${data.main.feels_like}&deg</p></div>`
+
 }
-// date_index = String(Number(date_index) + 1).padStart(2, '0');
-console.log(date_index);
-
-let month_index
 
 
-}
 
-
-display_week_data();
 
 
 
