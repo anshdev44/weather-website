@@ -173,7 +173,7 @@ async function getweather(city) {
 
 async function future_weather(city) {
     // http://api.openweathermap.org/data/2.5/forecast?q=London&cnt=40&units=metric&appid=YOUR_API_KEY
-    let response = await fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&units=metric&appid=${apikey}`);
+    let response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=40&units=metric&appid=${apikey}`);
     let data = await response.json();
     fetch_week_data(data)
 }
