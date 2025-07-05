@@ -243,6 +243,15 @@
          overflow: hidden;
      }
 
-     .one_week{
-        overflow-x: auto;
+     .one_week {
+         overflow-x: auto;
+         scrollbar-width: none;
+         /* For Firefox */
+         -ms-overflow-style: none;
+         /* For Internet Explorer and Edge */
+     }
+
+     .one_week::-webkit-scrollbar {
+         display: none;
+         /* For Chrome, Safari, Opera */
      }
